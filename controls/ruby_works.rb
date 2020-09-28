@@ -24,6 +24,7 @@ control 'core-plans-ruby-works' do
       command_output_pattern: /Bundler\s+commands:/,
     },
     "erb" => {
+      command_suffix: "--help 2>&1",
       command_output_pattern: /erb\s+\[switches\]/,
       exit_pattern: /^[^0]/,
     },
@@ -54,7 +55,7 @@ control 'core-plans-ruby-works' do
   # over-ride the defaults below with (command_suffix:, io:, etc)
   subset.each do |binary_name, value|
     # set default values if each binary doesn't define an over-ride
-    command_suffix = value.has_key?(:command_suffix) ? "#{value[:command_suffix]} 2>&1" : "--help 2>&1"
+    command_suffix = value.has_key?(:command_suffix) ? "#{value[:command_suffix]}" : "--help"
     command_output_pattern = value[:command_output_pattern] || /usage:(\s+|.*)#{binary_name}/i
     exit_pattern = value[:exit_pattern] || /^[0]$/ # use /^[^0]{1}\d*$/ for non-zero exit status
 
