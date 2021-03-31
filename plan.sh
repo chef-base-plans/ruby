@@ -6,7 +6,7 @@ pkg_description="A dynamic, open source programming language with a focus on \
   read and easy to write."
 pkg_license=("Ruby")
 pkg_maintainer="The Habitat Maintainers <humans@habitat.sh>"
-pkg_source=https://cache.ruby-lang.org/pub/${pkg_name}/${pkg_name}-${pkg_version}.tar.gz
+pkg_source=https://cache.ruby-lang.org/pub/${pkg_name}/2.7/${pkg_name}-${pkg_version}.tar.gz
 pkg_upstream_url=https://www.ruby-lang.org/en/
 pkg_shasum=6e5706d0d4ee4e1e2f883db9d768586b4d06567debea353c796ec45e8321c3d4
 pkg_deps=(core/glibc core/ncurses core/zlib core/openssl core/libyaml core/libffi core/readline core/nss-myhostname)
