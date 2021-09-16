@@ -8,20 +8,20 @@ control 'core-plans-ruby-works' do
   title 'Ensure ruby works as expected'
   desc '
   Verify ruby by ensuring that
-  (1) its installation directory exists 
+  (1) its installation directory exists
   (2) it returns the expected version
   '
-  
+
   plan_installation_directory = command("hab pkg path #{plan_origin}/#{plan_name}")
   describe plan_installation_directory do
     its('exit_status') { should eq 0 }
     its('stdout') { should_not be_empty }
   end
-  
+
   plan_pkg_version = plan_installation_directory.stdout.split("/")[5]
   full_suite = {
     "bundle" => {
-      command_output_pattern: /Bundler\s+commands:/,
+      command_output_pattern: /bundle\(1\)/i,
     },
     "erb" => {
       command_suffix: "--help 2>&1",
@@ -48,10 +48,10 @@ control 'core-plans-ruby-works' do
     #   command_output_pattern: /rubygems_update \[options\]/,
     # },
   }
-  
+
   # Use the following to pull out a subset of the above and test progressiveluy
   subset = full_suite.select { |key, value| key.to_s.match(/^.*$/) }
-  
+
   # over-ride the defaults below with (command_suffix:, io:, etc)
   subset.each do |binary_name, value|
     # set default values if each binary doesn't define an over-ride

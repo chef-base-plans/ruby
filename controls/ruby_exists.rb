@@ -26,7 +26,6 @@ control 'core-plans-ruby-exists' do
     "rdoc",
     "ri",
     "ruby",
-    "update_rubygems",
   ].each do |binary_name|
     command_full_path = File.join(plan_installation_directory.stdout.strip, "bin", binary_name)
     describe file(command_full_path) do
